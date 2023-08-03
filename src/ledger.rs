@@ -33,26 +33,26 @@ pub struct Ledger {
 }
 
 impl Ledger {
-    // pub fn init_metadata(&mut self, default_custodian: Principal, args: Option<InitArgs>) {
-    //     let metadata = self.metadata_mut();
-    //     metadata.custodians.insert(default_custodian);
-    //     if let Some(args) = args {
-    //         metadata.name = args.name;
-    //         metadata.logo = args.logo;
-    //         metadata.symbol = args.symbol;
-    //         if let Some(custodians) = args.custodians {
-    //             for custodian in custodians {
-    //                  metadata.custodians.insert(custodian);
-    //             }
-    //         }
+    pub fn init_metadata(&mut self, default_custodian: Principal, args: Option<InitArgs>) {
+        let metadata = self.metadata_mut();
+        metadata.custodians.insert(default_custodian);
+        if let Some(args) = args {
+            metadata.name = args.name;
+            metadata.logo = args.logo;
+            metadata.symbol = args.symbol;
+            if let Some(custodians) = args.custodians {
+                for custodian in custodians {
+                     metadata.custodians.insert(custodian);
+                }
+            }
 
-    //         handshake(1_000_000_000_000, args.cap);
-    //     } else {
-    //         handshake(1_000_000_000_000, None);
-    //     }
-    //     metadata.created_at = time();
-    //     metadata.upgraded_at = time();
-    // }
+            // handshake(1_000_000_000_000, args.cap);
+        } else {
+            // handshake(1_000_000_000_000, None);
+        }
+        metadata.created_at = time();
+        metadata.upgraded_at = time();
+    }
 
     pub fn get_registry(&self) -> HashMap<TokenIndex, AccountIdentifier__1> {
         self.idx2aid.clone()

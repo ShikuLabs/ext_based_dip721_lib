@@ -12,7 +12,10 @@ use std::ops::Not;
 use std::sync::atomic::AtomicU32;
 use std::collections::{HashSet, HashMap};
 
-use super::types::{AccountIdentifier_shiku};
+use super::types::{
+    AccountIdentifier_shiku,
+    InitArgs
+};
 use super::pid2aid;
 use super::types::{change_minted_state, TokenIndex, AccountIdentifier__1};
 thread_local! {
@@ -50,9 +53,9 @@ pub fn restore_minted_info(minted_id: Vec<Nat>) {
     );
 }
 
-// pub fn dip721_init(args: Option<InitArgs>) {
-//     ledger::with_mut(|ledger| ledger.init_metadata(ic_cdk::api::caller(), args));
-// }
+pub fn dip721_init(args: Option<InitArgs>) {
+    ledger::with_mut(|ledger| ledger.init_metadata(ic_cdk::api::caller(), args));
+}
 
 pub fn dip721_total_supply() -> Nat {
     ledger::with(|ledger| Nat::from(ledger.tokens_count()))
