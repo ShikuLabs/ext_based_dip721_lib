@@ -353,3 +353,5 @@ pub fn pid2aid(pid: &Principal) -> AccountIdentifier_shiku {
          Err(_) => AccountIdentifier_shiku::default(),
      }
 }
+
+
