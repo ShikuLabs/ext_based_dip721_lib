@@ -4,14 +4,14 @@ use ic_cdk::export::Principal;
 use serde::Serialize;
 use std::collections::HashSet;
 
-// #[derive(CandidType, Deserialize)]
-// pub struct InitArgs {
-//     pub name: Option<String>,
-//     pub logo: Option<String>,
-//     pub symbol: Option<String>,
-//     pub custodians: Option<HashSet<Principal>>,
-//     pub cap: Option<Principal>,
-// }
+#[derive(CandidType, Deserialize)]
+pub struct InitArgs {
+    pub name: Option<String>,
+    pub logo: Option<String>,
+    pub symbol: Option<String>,
+    pub custodians: Option<HashSet<Principal>>,
+    pub cap: Option<Principal>,
+}
 
 
 #[derive(CandidType, Default, Deserialize, Debug, Clone)]
@@ -58,13 +58,6 @@ pub fn read_minted_state<T, F: FnOnce(&Vec<Nat>) ->T>(f: F) -> T {
 pub fn change_minted_state<T, F: FnOnce(&Vec<Nat>) -> T >(f: F) -> T {
     MINTEDID.with(|minted| f(&minted.borrow_mut()))
 }
-
-
-// #[derive(Debug, CandidType, Deserialize, Clone, Serialize)]
-// pub enum CreateStatus {
-//     NotPublish,
-//     OnUsed,
-// }
 
 #[derive(CandidType, Debug, Clone, Deserialize)]
 pub struct Status {
@@ -148,21 +141,21 @@ impl User {
     }
 }
 
-// #[derive(Debug, CandidType, Clone, Deserialize)]
-// pub struct AllowanceRequest {
-//     pub owner: User,
-//     pub spender: Principal,
-//     pub token: TokenIdentifier__1,
-// }
+#[derive(Debug, CandidType, Clone, Deserialize)]
+pub struct AllowanceRequest {
+    pub owner: User,
+    pub spender: Principal,
+    pub token: TokenIdentifier__1,
+}
 
 
-// #[derive(Debug, CandidType, Clone, Deserialize)]
-// pub struct ApproveRequest {
-//     pub allowance: Balance,
-//     pub spender: Principal,
-//     pub subaccount: Option<SubAccount>,
-//     pub token: token_identifier::TokenIdentifier,
-// }
+#[derive(Debug, CandidType, Clone, Deserialize)]
+pub struct ApproveRequest {
+    pub allowance: Balance,
+    pub spender: Principal,
+    pub subaccount: Option<SubAccount>,
+    pub token: token_identifier::TokenIdentifier,
+}
 
 #[derive(Debug, CandidType, Clone, Deserialize)]
 #[allow(non_camel_case_types)]
@@ -253,16 +246,16 @@ pub enum TransferResponseDetails {
     Unauthorized(AccountIdentifier),
 }
 
-// #[derive(Debug, Clone, CandidType, Deserialize)]
-// pub struct TransferRequest {
-//     pub amount: Balance,
-//     pub from: User,
-//     pub memo: Memo,
-//     pub notify: bool,
-//     pub subaccount: Option<SubAccount>,
-//     pub to: User,
-//     pub token: token_identifier::TokenIdentifier,
-// }
+#[derive(Debug, Clone, CandidType, Deserialize)]
+pub struct TransferRequest {
+    pub amount: Balance,
+    pub from: User,
+    pub memo: Memo,
+    pub notify: bool,
+    pub subaccount: Option<SubAccount>,
+    pub to: User,
+    pub token: token_identifier::TokenIdentifier,
+}
 
 // #[derive(Debug, Clone, CandidType, Deserialize)]
 // pub struct TransferRequestV1 {
@@ -346,11 +339,11 @@ pub enum BalanceResponse {
     #[allow(non_camel_case_types)]
     ok(Balance),
 }
-// #[derive(Debug, Clone, CandidType, Deserialize)]
-// pub struct BalanceRequest {
-//     token: u64,
-//     user: User,
-// }
+#[derive(Debug, Clone, CandidType, Deserialize)]
+pub struct BalanceRequest {
+    token: u64,
+    user: User,
+}
 
 pub fn pid2aid(pid: &Principal) -> AccountIdentifier_shiku {
     let sub_acc = ic_ledger_types::Subaccount([0u8; 32]);
