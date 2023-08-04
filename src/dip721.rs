@@ -83,7 +83,7 @@ pub fn dip721_transfer_from(
     token_identifier: TokenId,
 ) -> Result<Nat, NftError> {
     ledger::with_mut(|ledger| {
-        let caller = ic_cdk::api::caller();
+        let _caller = ic_cdk::api::caller();
         if owner.eq(&to) {
             // insert_sync(IndefiniteEvent {
             //     caller: ic_cdk::api::caller(),
