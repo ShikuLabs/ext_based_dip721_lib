@@ -120,7 +120,8 @@ pub enum NftError {
 /////////////// YUMI TYPES ////////////
 
 pub type Time = Int;
-pub type TokenIndex = u32;
+pub type TokenIndexU32 = u32;
+
 #[derive(Debug, CandidType, Clone, Deserialize)]
 pub struct SubAccount(pub Vec<u8>);
 
@@ -226,7 +227,7 @@ pub struct Listing {
 
 
 #[derive(Debug, CandidType, Clone, Deserialize)]
-pub struct Registry(TokenIndex, AccountIdentifier__1);
+pub struct Registry(TokenIndexU32, AccountIdentifier__1);
 
 #[derive(Debug, CandidType, Clone, Deserialize)]
 pub enum TransferResponse {
@@ -316,11 +317,11 @@ pub enum Result_1 {
     #[allow(non_camel_case_types)]
     err(CommonError),
     #[allow(non_camel_case_types)]
-    ok(Vec<TokenIndex>),
+    ok(Vec<TokenIndexU32>),
 }
 
 #[derive(Debug, Clone, CandidType, Deserialize)]
-pub struct ResultDetail(pub TokenIndex, pub Option<Listing>, pub Option<Vec<Vec<u8>>>);
+pub struct ResultDetail(pub TokenIndexU32, pub Option<Listing>, pub Option<Vec<Vec<u8>>>);
 
 #[derive(Debug, Clone, CandidType, Deserialize)]
 pub enum NFTResult {

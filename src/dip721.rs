@@ -289,12 +289,12 @@ pub fn dip721_approve(
     })
 }
 
-pub fn dip721_get_registry() -> HashMap<TokenIndex, AccountIdentifier__1> {
+pub fn dip721_get_registry() -> HashMap<TokenIndexU32, AccountIdentifier__1> {
     ledger::with(|ledger| ledger.get_registry())
 }
 
 
-pub fn dip721_add_aid_idx(k: &TokenIndex, v: &AccountIdentifier__1) {
+pub fn dip721_add_aid_idx(k: &TokenIndexU32, v: &AccountIdentifier__1) {
     ledger::with_mut(|ledget| {
         ledget.idx2aid.insert(*k, v.to_string());
     });

@@ -28,7 +28,7 @@ pub struct Ledger {
     pub owners: HashMap<AccountIdentifier_shiku, HashSet<TokenId>>,
     pub operators: HashMap<AccountIdentifier_shiku, HashSet<TokenId>>,
     pub custodians: HashSet<AccountIdentifier_shiku>,
-    pub idx2aid: HashMap<TokenIndex, AccountIdentifier__1>,
+    pub idx2aid: HashMap<TokenIndexU32, AccountIdentifier__1>,
     pub tx_count: Nat,
 }
 
@@ -54,7 +54,7 @@ impl Ledger {
         metadata.upgraded_at = time();
     }
 
-    pub fn get_registry(&self) -> HashMap<TokenIndex, AccountIdentifier__1> {
+    pub fn get_registry(&self) -> HashMap<TokenIndexU32, AccountIdentifier__1> {
         self.idx2aid.clone()
     }
 
